@@ -8,6 +8,7 @@ import (
 	"github.com/sharvillimaye/quotio/server/service/health"
 
 	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 	"github.com/sharvillimaye/quotio/server/service/user"
 )
 
@@ -25,6 +26,12 @@ func NewAPIServer(addr string, db *sql.DB) *APIServer {
 
 func (s *APIServer) Run() error {
 	router := mux.NewRouter()
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"http://localhost:5173"}, // Update with your client origin
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders: []string{"Authorization", "Content-Type"},
+	})
+
 	subrouter := router.PathPrefix("/api/v1/").Subrouter()
 
 	healthHandler := health.NewHandler()
@@ -36,5 +43,7 @@ func (s *APIServer) Run() error {
 
 	log.Println("Listening on", s.addr)
 
-	return http.ListenAndServe(s.addr, router)
+	handler := c.Handler(router)
+
+	return http.ListenAndServe(s.addr, handler)
 }
