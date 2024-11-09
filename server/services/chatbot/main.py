@@ -3,11 +3,14 @@ import openai
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from dotenv import load_dotenv
+import uvicorn
 
 load_dotenv()
 
 # Set the API key for OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+print("OpenAI API Key:", openai.api_key)
 
 # Initialize FastAPI
 app = FastAPI()
@@ -55,3 +58,6 @@ def get_medical_chatbot_response(user_input):
 async def medical_chatbot_endpoint(user_input: UserInput):
     response = get_medical_chatbot_response(user_input.question)
     return {"response": response}
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # Change the port number here

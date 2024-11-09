@@ -46,3 +46,5 @@ def live_transcription():
             print("\nStopped by user.")
 
 live_transcription()
+
+
