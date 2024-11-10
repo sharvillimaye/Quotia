@@ -1,11 +1,123 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Mic, MicOff } from 'lucide-react';
+
+// Custom hook for speech recognition
+const useSpeechRecognition = () => {
+  const [transcript, setTranscript] = useState('');
+  const [interimTranscript, setInterimTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const [error, setError] = useState(null);
+  const lastFinalTranscriptRef = useRef('');
+
+  // Check if browser supports speech recognition
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+  useEffect(() => {
+    if (!recognition) {
+      setError('Speech recognition is not supported in this browser.');
+      return;
+    }
+
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    recognition.onresult = (event) => {
+      let interimText = '';
+      let finalText = '';
+
+      // Process all results
+      for (let i = 0; i < event.results.length; i++) {
+        const result = event.results[i];
+        if (result.isFinal) {
+          const newText = result[0].transcript.trim();
+          // Only add if it's not a duplicate of the last final transcript
+          if (newText !== lastFinalTranscriptRef.current) {
+            finalText = newText;
+            lastFinalTranscriptRef.current = newText;
+          }
+        } else {
+          interimText = result[0].transcript;
+        }
+      }
+
+      setInterimTranscript(interimText);
+      if (finalText) {
+        setTranscript(prev => {
+          const newTranscript = prev ? `${prev} ${finalText}` : finalText;
+          return newTranscript;
+        });
+      }
+    };
+
+    recognition.onend = () => {
+      if (isListening) {
+        recognition.start();
+      }
+    };
+
+    recognition.onerror = (event) => {
+      setError(`Error occurred in recognition: ${event.error}`);
+      setIsListening(false);
+    };
+
+    return () => {
+      if (recognition) {
+        recognition.stop();
+      }
+    };
+  }, [isListening]);
+
+  const startListening = useCallback(() => {
+    if (!recognition) return;
+    
+    setTranscript('');
+    setInterimTranscript('');
+    setError(null);
+    lastFinalTranscriptRef.current = '';
+    setIsListening(true);
+    try {
+      recognition.start();
+    } catch (err) {
+      console.log('Recognition already started');
+    }
+  }, [recognition]);
+
+  const stopListening = useCallback(() => {
+    if (!recognition) return;
+    
+    setIsListening(false);
+    setInterimTranscript('');
+    recognition.stop();
+    lastFinalTranscriptRef.current = '';
+  }, [recognition]);
+
+  return {
+    transcript,
+    interimTranscript,
+    isListening,
+    error,
+    startListening,
+    stopListening,
+    hasSupport: !!recognition
+  };
+};
 
 function Live() {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [transcription, setTranscription] = useState('');
+  const {
+    transcript,
+    interimTranscript,
+    isListening,
+    error,
+    startListening,
+    stopListening,
+    hasSupport
+  } = useSpeechRecognition();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -32,8 +144,12 @@ function Live() {
     }
   };
 
-  const startTranscription = () => {
-    setTranscription("Listening to live transcription...");
+  const toggleTranscription = () => {
+    if (isListening) {
+      stopListening();
+    } else {
+      startListening();
+    }
   };
 
   return (
@@ -105,16 +221,49 @@ function Live() {
                 <h2 className="text-lg font-semibold text-white">Live Transcription</h2>
               </div>
               <div className="p-4 h-[calc(100%-120px)] overflow-y-auto">
-                <div className="bg-gray-700 p-4 rounded-lg text-gray-100 h-full">
-                  {transcription || "Waiting for transcription..."}
+                <div className="bg-gray-700 p-4 rounded-lg text-gray-100 h-full relative">
+                  {!hasSupport ? (
+                    <div className="text-yellow-400">
+                      Speech recognition is not supported in this browser. Please try Chrome, Edge, or Safari.
+                    </div>
+                  ) : error ? (
+                    <div className="text-red-400">{error}</div>
+                  ) : (
+                    <div className="whitespace-pre-wrap">
+                      {transcript}
+                      <span className="text-gray-400">{interimTranscript}</span>
+                    </div>
+                  )}
+                  {isListening && (
+                    <div className="absolute top-2 right-2">
+                      <div className="animate-pulse">
+                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="p-2 border-t border-gray-700">
                 <button
-                  onClick={startTranscription}
-                  className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  onClick={toggleTranscription}
+                  disabled={!hasSupport}
+                  className={`w-full px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2 ${
+                    isListening 
+                      ? 'bg-red-600 hover:bg-red-700' 
+                      : 'bg-blue-600 hover:bg-blue-700'
+                  } text-white ${!hasSupport && 'opacity-50 cursor-not-allowed'}`}
                 >
-                  Start Transcription
+                  {isListening ? (
+                    <>
+                      <MicOff size={20} />
+                      Stop Transcription
+                    </>
+                  ) : (
+                    <>
+                      <Mic size={20} />
+                      Start Transcription
+                    </>
+                  )}
                 </button>
               </div>
             </div>
