@@ -1,0 +1,195 @@
+[
+    {
+      "term": "Hypertension",
+      "definition": "A condition where the blood pressure in the arteries is consistently elevated, often leading to heart disease, stroke, or kidney problems."
+    },
+    {
+      "term": "Amlodipine",
+      "definition": "A medication used to treat high blood pressure and chest pain by relaxing blood vessels and improving blood flow."
+    },
+    {
+      "term": "Diabetes Mellitus",
+      "definition": "A group of diseases that affect the body’s ability to produce or respond to insulin, leading to abnormal blood sugar levels."
+    },
+    {
+      "term": "Asthma",
+      "definition": "A chronic condition involving the airways in the lungs becoming inflamed and narrowed, causing difficulty breathing."
+    },
+    {
+      "term": "Myocardial Infarction",
+      "definition": "Commonly known as a heart attack, it occurs when the blood flow to a part of the heart muscle is blocked."
+    },
+    {
+      "term": "Stroke",
+      "definition": "A medical emergency where there is a sudden disruption of blood supply to the brain, leading to brain damage."
+    },
+    {
+      "term": "Bronchitis",
+      "definition": "Inflammation of the lining of the bronchial tubes, often caused by infection, leading to coughing and difficulty breathing."
+    },
+    {
+      "term": "Cholesterol",
+      "definition": "A waxy substance found in the blood, where high levels can increase the risk of heart disease and stroke."
+    },
+    {
+      "term": "Arthritis",
+      "definition": "A condition that causes inflammation and stiffness in the joints, often resulting in pain and limited movement."
+    },
+    {
+      "term": "Pneumonia",
+      "definition": "An infection of the lungs caused by bacteria, viruses, or fungi, leading to symptoms like coughing, fever, and difficulty breathing."
+    },
+    {
+      "term": "Cancer",
+      "definition": "A broad term for diseases where abnormal cells grow uncontrollably, often forming tumors and spreading to other parts of the body."
+    },
+    {
+      "term": "Epilepsy",
+      "definition": "A neurological disorder characterized by recurrent seizures caused by abnormal electrical activity in the brain."
+    },
+    {
+      "term": "Parkinson's Disease",
+      "definition": "A progressive neurological disorder that affects movement, often causing tremors, rigidity, and difficulty with coordination."
+    },
+    {
+      "term": "Alzheimer's Disease",
+      "definition": "A progressive condition that causes memory loss, confusion, and changes in behavior due to the degeneration of brain cells."
+    },
+    {
+      "term": "HIV",
+      "definition": "A virus that attacks the body's immune system, specifically the CD4 cells, making the body more susceptible to infections."
+    },
+    {
+      "term": "Hepatitis",
+      "definition": "An inflammation of the liver, usually caused by viral infections, leading to symptoms like jaundice, fatigue, and abdominal pain."
+    },
+    {
+      "term": "Tuberculosis",
+      "definition": "A contagious bacterial infection primarily affecting the lungs, but can also affect other parts of the body."
+    },
+    {
+      "term": "Migraine",
+      "definition": "A severe headache often accompanied by nausea, vomiting, and sensitivity to light or sound."
+    },
+    {
+      "term": "Gastritis",
+      "definition": "Inflammation of the stomach lining, often caused by infection, alcohol use, or certain medications, leading to symptoms like nausea and abdominal pain."
+    },
+    {
+      "term": "Ulcer",
+      "definition": "A sore that develops on the lining of the stomach, small intestine, or esophagus, often caused by bacterial infection or the use of nonsteroidal anti-inflammatory drugs (NSAIDs)."
+    },
+    {
+      "term": "Appendicitis",
+      "definition": "Inflammation of the appendix, typically causing pain in the lower right abdomen, nausea, and fever, often requiring surgical removal."
+    },
+    {
+      "term": "Anemia",
+      "definition": "A condition in which the blood has a lower than normal number of red blood cells or hemoglobin, leading to fatigue and weakness."
+    },
+    {
+      "term": "Cirrhosis",
+      "definition": "Scarring of the liver tissue often caused by chronic liver disease or excessive alcohol use, leading to liver dysfunction."
+    },
+    {
+      "term": "Multiple Sclerosis",
+      "definition": "A chronic autoimmune disease where the body's immune system attacks the protective sheath around nerve fibers in the central nervous system."
+    },
+    {
+      "term": "Osteoporosis",
+      "definition": "A condition in which bones become weak and brittle, increasing the risk of fractures, commonly associated with aging."
+    },
+    {
+      "term": "Tuberculosis",
+      "definition": "A contagious bacterial infection primarily affecting the lungs but can also affect other parts of the body, causing coughing, chest pain, and weight loss."
+    },
+    {
+      "term": "Insomnia",
+      "definition": "A sleep disorder characterized by difficulty falling asleep, staying asleep, or waking up too early, leading to fatigue and reduced functioning."
+    },
+    {
+      "term": "Scoliosis",
+      "definition": "A condition where the spine curves sideways, often in an 'S' or 'C' shape, which may cause back pain or affect posture."
+    },
+    {
+      "term": "Glaucoma",
+      "definition": "An eye condition that damages the optic nerve, often caused by high intraocular pressure, leading to vision loss if untreated."
+    },
+    {
+      "term": "Psoriasis",
+      "definition": "A chronic autoimmune skin condition that leads to the rapid growth of skin cells, causing scaly, red patches on the skin."
+    },
+    {
+      "term": "Rheumatoid Arthritis",
+      "definition": "An autoimmune disorder where the immune system attacks the joints, causing pain, swelling, and eventual joint damage."
+    },
+    {
+      "term": "Celiac Disease",
+      "definition": "An autoimmune disorder where ingestion of gluten damages the small intestine, leading to digestive problems and malabsorption of nutrients."
+    },
+    {
+      "term": "Hemophilia",
+      "definition": "A genetic disorder in which the blood does not clot properly, leading to excessive bleeding after injury or surgery."
+    },
+    {
+      "term": "Hodgkin's Lymphoma",
+      "definition": "A type of cancer that originates in the lymphatic system, often causing swollen lymph nodes, fever, and unexplained weight loss."
+    },
+    {
+      "term": "Non-Hodgkin's Lymphoma",
+      "definition": "A diverse group of blood cancers that include all types of lymphoma except Hodgkin's lymphoma, often affecting the lymph nodes and spleen."
+    },
+    {
+      "term": "Schizophrenia",
+      "definition": "A serious mental disorder characterized by distorted thinking, hallucinations, and a reduced ability to distinguish reality from fantasy."
+    },
+    {
+      "term": "Bipolar Disorder",
+      "definition": "A mental health condition characterized by extreme mood swings, including emotional highs (mania) and lows (depression)."
+    },
+    {
+      "term": "Anorexia Nervosa",
+      "definition": "An eating disorder characterized by an intense fear of gaining weight, leading to restricted food intake and often severe weight loss."
+    },
+    {
+      "term": "Bulimia Nervosa",
+      "definition": "An eating disorder characterized by binge eating followed by purging through vomiting, excessive exercise, or laxative use."
+    },
+    {
+      "term": "Obesity",
+      "definition": "A condition characterized by excessive body fat that may lead to health problems like heart disease, diabetes, and high blood pressure."
+    },
+    {
+      "term": "Tinnitus",
+      "definition": "A condition where a person hears ringing, buzzing, or other sounds in the ears when no external sound is present."
+    },
+    {
+      "term": "Sinusitis",
+      "definition": "Inflammation of the sinuses, often caused by infection or allergies, leading to symptoms like facial pain, congestion, and headaches."
+    },
+    {
+      "term": "Gout",
+      "definition": "A form of arthritis characterized by sudden, severe attacks of pain, swelling, and redness in the joints, usually caused by excess uric acid in the blood."
+    },
+    {
+      "term": "Crohn's Disease",
+      "definition": "A chronic inflammatory bowel disease that causes inflammation and irritation in the digestive tract, leading to symptoms like abdominal pain, diarrhea, and weight loss."
+    },
+    {
+      "term": "Irritable Bowel Syndrome",
+      "definition": "A common digestive disorder characterized by symptoms like cramping, bloating, diarrhea, and constipation, with no clear underlying cause."
+    },
+    {
+      "term": "Gallstones",
+      "definition": "Hard deposits that form in the gallbladder, which can block the normal flow of bile and cause pain or infection."
+    },
+    {
+      "term": "Cystic Fibrosis",
+      "definition": "A genetic disorder that affects the lungs, pancreas, and other organs, leading to thick mucus that causes breathing problems and digestive issues."
+    },
+    {
+      "term": "Lupus",
+      "definition": "A chronic autoimmune disease where the immune system attacks the body’s own tissues, affecting the skin, joints, kidneys, and other organs."
+    }
+  ]
+  
