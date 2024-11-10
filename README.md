@@ -1,18 +1,18 @@
 
 <p align="center">
-        <img src="./media/logo.png" alt="Quotio Logo" width="200" />
+        <img src="./media/logo.png" alt="Quotia Logo" width="200" />
 </p>
 
-<h1 align="center">Quotio</h1>
+<h1 align="center">Quotia</h1>
 
 <p align="center">
-        Quotio simplifies complex medical terms in doctor-patient conversations, helping patients understand jargon and ask follow-up questions.
+        Quotia simplifies complex medical terms in doctor-patient conversations, helping patients understand jargon and ask follow-up questions.
 </p>
 
 ## In Action
 
 <p align="center">
-        <img src="./media/flow.gif" alt="Quotio in action" />
+        <img src="./media/flow.gif" alt="Quotia in action" />
 </p>
 
 ## Features
@@ -42,8 +42,8 @@
 
 1. Clone the repository:
         ```sh
-        git clone https://github.com/yourusername/quotio.git
-        cd quotio
+        git clone https://github.com/sharvillimaye/Quotia.git
+        cd Quotia
         ```
 
 2. Install client dependencies:
