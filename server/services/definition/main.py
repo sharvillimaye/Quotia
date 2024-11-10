@@ -2,17 +2,29 @@ import os
 import openai
 import json
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import uvicorn
+from mysql.connector import Error
 
 load_dotenv()
 
 # Set the API key for OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
 # Initialize FastAPI
 app = FastAPI()
+
+# Disable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Define request and response models
 class ParagraphInput(BaseModel):
@@ -63,7 +75,80 @@ def get_gpt_response(paragraph):
 @app.post("/extract-medical-terms", response_model=TermsResponse)
 async def extract_medical_terms(paragraph_input: ParagraphInput):
     terms = get_gpt_response(paragraph_input.paragraph)
+
+    # try:
+    #     connection = mysql.connector.connect(
+    #         host=os.getenv("DB_HOST"),
+    #         user=os.getenv("DB_USER"),
+    #         password=os.getenv("DB_PASSWORD"),
+    #         database=os.getenv("DB_NAME")
+    #     )
+
+    #     if connection.is_connected():
+    #         cursor = connection.cursor()
+
+    #         # Insert a new meeting into the meetings table
+    #         insert_query = """
+    #         INSERT INTO meetings (transcript)
+    #         VALUES (%s)
+    #         """
+    #         transcript = paragraph_input.paragraph
+    #         cursor.execute(insert_query, (transcript))
+
+    #         # Commit the transaction
+    #         connection.commit()
+
+    #         # Get the ID of the newly created meeting
+    #         meeting_id = cursor.lastrowid
+
+    #         # Insert the key terms into the keyterms table
+    #         insert_keyterms_query = """
+    #         INSERT INTO keyterms (terms, meetingId)
+    #         VALUES (%s, %s)
+    #         """
+    #         terms_json = terms
+    #         cursor.execute(insert_keyterms_query, (terms_json, meeting_id))
+
+    #         # Commit the transaction
+    #         connection.commit()
+
+    # except Error as e:
+    #     raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+    # finally:
+    #     if connection.is_connected():
+    #         cursor.close()
+    #         connection.close()
+    
     return {"terms": terms}
+
+@app.get("/meetings", response_model=list)
+async def get_all_meetings():
+    try:
+        connection = mysql.connector.connect(
+            host=os.getenv("DB_HOST"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD"),
+            database=os.getenv("DB_NAME")
+        )
+
+        if connection.is_connected():
+            cursor = connection.cursor(dictionary=True)
+
+            # Query to get all meetings
+            select_query = "SELECT * FROM meetings"
+            cursor.execute(select_query)
+            meetings = cursor.fetchall()
+
+    except Error as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()
+
+    return meetings
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)  # Change the port number here
