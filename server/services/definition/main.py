@@ -45,9 +45,9 @@ def get_gpt_response(paragraph):
     Example format:
 
     {{
-        "Diabetes": "A chronic medical condition characterized by high blood sugar levels due to the body's inability to produce or effectively use insulin.",
-        "Blood Sugar Test": "A medical test that measures the concentration of glucose in the blood to assess an individual's blood sugar levels.",
-        "Insulin Treatment": "A therapy involving the administration of insulin to help regulate blood sugar levels in individuals with diabetes."
+        "Name of Term": "Definition of the term",
+        "Name of Term": "Definition of the term",
+        "Name of Term": "Definition of the term"
     }}
     """
 

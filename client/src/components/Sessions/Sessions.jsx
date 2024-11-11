@@ -51,15 +51,24 @@ function Sessions() {
     navigate('/login');
   };
 
-  const handleDownloadTranscript = (sessionId) => {
-    // Implement transcript download logic
-    console.log(`Downloading transcript for session ${sessionId}`);
+  const downloadPDF = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    // Set the href to your single PDF file in the same folder
+    link.href = '/visit_summary.pdf';  // Path to the PDF file in the same folder
+    // Set download attribute to force download
+    link.download = 'visit_summary.pdf';  // This will be the name of the downloaded file
+    // Append link to body
+    document.body.appendChild(link);
+    // Trigger click
+    link.click();
+    // Clean up
+    document.body.removeChild(link);
   };
 
-  const handleDownloadInsights = (sessionId) => {
-    // Implement insights PDF download logic
-    console.log(`Downloading insights for session ${sessionId}`);
-  };
+  // Both handlers now just call the same downloadPDF function
+  const handleDownloadTranscript = () => downloadPDF();
+  const handleDownloadInsights = () => downloadPDF();
 
   const filteredSessions = sessions.filter(session => 
     session.topic.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -167,14 +176,14 @@ function Sessions() {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                           <div className="flex justify-center gap-3">
                             <button
-                              onClick={() => handleDownloadTranscript(session.id)}
+                              onClick={handleDownloadTranscript}
                               className="p-2 hover:bg-gray-600 rounded-full transition-colors group"
                               title="Download Transcript"
                             >
                               <FileText size={20} className="text-gray-400 group-hover:text-white" />
                             </button>
                             <button
-                              onClick={() => handleDownloadInsights(session.id)}
+                              onClick={handleDownloadInsights}
                               className="p-2 hover:bg-gray-600 rounded-full transition-colors group"
                               title="Download Insights PDF"
                             >
